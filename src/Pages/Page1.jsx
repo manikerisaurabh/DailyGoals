@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaDumbbell, FaFire, FaHeart, FaMoon, FaShoePrints, FaTint } from 'react-icons/fa';
+import Graph from '../Components/Graph';
 
 const Page1 = () => {
     const [goals, setGoals] = useState([
@@ -13,7 +14,7 @@ const Page1 = () => {
 
     const toggleGoal = (index, event) => {
         event.stopPropagation();
-    
+
         const newGoals = [...goals];
         newGoals[index].completed = !newGoals[index].completed;
         setGoals(newGoals);
@@ -36,11 +37,11 @@ const Page1 = () => {
     const goalsList = goals.map((goal, index) => (
         <div key={index} className={`bg-gray-800 h-16 rounded-xl mb-2 flex items-center justify-between ${goal.completed}`} onClick={() => toggleGoal(index)}>
             <div className="flex items-center">
-                {goal.title === 'Workout for 20 mins' && <FaDumbbell style={{ color: 'purple',fontSize:'30px' }} className="ml-4 p-1 mr-2 text-xl bg-gray-600 rounded-md" />}
-                {goal.title === 'Read Book for 15 mins' && <FaFire style={{ color: 'orange',fontSize:'30px' }} className="ml-4 p-1 mr-2 text-xl bg-gray-600 rounded-md" />}
-                {goal.title === '30 mins walk' && <FaShoePrints style={{ color: 'green' ,fontSize:'30px'}} className="ml-4 p-1 mr-2 text-xl bg-gray-600 rounded-md" />}
-                {goal.title === 'Sleep at 11 sharp' && <FaMoon style={{ color: 'skyblue' ,fontSize:'30px'}} className="ml-4 p-1 mr-2 text-xl bg-gray-600 rounded-md" />}
-                {goal.title === 'Drink 3L water' && <FaTint style={{ color: 'blue' ,fontSize:'30px'}} className="ml-4 p-1 mr-2 text-xl bg-gray-600 rounded-md" />}
+                {goal.title === 'Workout for 20 mins' && <FaDumbbell style={{ color: 'purple', fontSize: '30px' }} className="ml-4 p-1 mr-2 text-xl bg-gray-600 rounded-md" />}
+                {goal.title === 'Read Book for 15 mins' && <FaFire style={{ color: 'orange', fontSize: '30px' }} className="ml-4 p-1 mr-2 text-xl bg-gray-600 rounded-md" />}
+                {goal.title === '30 mins walk' && <FaShoePrints style={{ color: 'green', fontSize: '30px' }} className="ml-4 p-1 mr-2 text-xl bg-gray-600 rounded-md" />}
+                {goal.title === 'Sleep at 11 sharp' && <FaMoon style={{ color: 'skyblue', fontSize: '30px' }} className="ml-4 p-1 mr-2 text-xl bg-gray-600 rounded-md" />}
+                {goal.title === 'Drink 3L water' && <FaTint style={{ color: 'blue', fontSize: '30px' }} className="ml-4 p-1 mr-2 text-xl bg-gray-600 rounded-md" />}
                 <p className="p-4 text-xl">{goal.title}</p>
             </div>
             <input type="checkbox" checked={goal.completed} onChange={(event) => toggleGoal(index, event)} className="mr-4" />
@@ -69,6 +70,7 @@ const Page1 = () => {
                     <span className="text-4xl mr-2">&raquo;</span>
                 </div>
             </div>
+            <Graph goals={goals} />
         </div>
     );
 };
